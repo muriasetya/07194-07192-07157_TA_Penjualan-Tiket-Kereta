@@ -23,22 +23,26 @@
                         <thead>
                             <tr>
                                 <td>Kode Transaksi</td>
-                                <td>ID Admin</td>
-                                <td>ID Costumer</td>
+                                <td>Admin</td>
+                                <td>Costumer</td>
                                 <td>Tanggal Transaksi</td>
                                 <td>Jumlah Satuan</td>
                                 <td>Total Transaksi</td>
                             </tr>
                         </thead>
                         <tbody>
+                        <?php $no = 1;
+                        foreach ($data as $row) : ?>
                             <tr>
-                                <td>1</td>
-                                <td>2</td>
-                                <td>2</td>
-                                <td>20-20-2020</td>
-                                <td>5</td>
-                                <td>1</td>
+                                <td><?=$no ?></td>
+                                <td><?=$row['Admin'] ?></td>
+                                <td><?=$row['Costumer'] ?></td>
+                                <td><?=$row['tanggalTransaksi'] ?></td>
+                                <td><?=$row['jumlahSatuan'] ?></td>
+                                <td><?=$row['total'] ?></td>
                             </tr>
+                            <?php $no++;
+                            endforeach;?>
                         </tbody>
                     </table>
                 </div>

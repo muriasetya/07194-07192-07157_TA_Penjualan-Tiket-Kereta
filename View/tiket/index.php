@@ -41,6 +41,7 @@
                     <table class="table table-striped table-bordered">
                         <thead>
                             <tr>
+                                <th>No</th>
                                 <th>Jadwal</th>
                                 <th>Nama Kereta</th>
                                 <th>Kelas</th>
@@ -49,12 +50,20 @@
                             </tr>
                         </thead>
                         <tbody>
+                        <?php $no = 1;
+                        foreach ($data as $row) : ?>
                             <tr>
-                                <th>Rabu</th>
-                                <th>Express</th>
-                                <th>Presiden</th>
-                                <th>Murah</th>
+                                <th><?=$row['No'] ?></th>
+                                <th><?=$row['jadwal'] ?></th>
+                                <th><?=$row['kereta'] ?></th>
+                                <th><?=$row['kelas'] ?></th>
+                                <th><?=$row['harga'] ?></th>
+                                <th>
+                                    <a href="#=<?=$row['No'] ?>" class="btn btn-outline-primary">Pilih</a>
+                                </th>
                             </tr>
+                        <?php $no++;
+                        endforeach;?>
                     </div>
                 </li>
             </ul>

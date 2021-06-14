@@ -11,7 +11,12 @@ class authAdmin
         if ($this->prosesAuth($nama,$password)){
             header("location: index.php?page=tiket&aksi=View&pesan=Berhasil login");
         }else{
-            header("location: index.php?page=login&aksi=View&pesan=Upaya login digagalkan");
+            echo "<script type='text/javascript'>
+            alert('Username Atau Password Anda Salah');
+            window.location='index.php';
+            </script>";
+            //header("location: index.php?page=login&aksi=View&pesan=Upaya login digagalkan");
+            
         }
     }
 
@@ -21,6 +26,5 @@ class authAdmin
         return $query->fetch_assoc();
     }
 }
-// $tes = new authAdmin();
-// //var_export($tes->prosesAuth('KHOIRI',123));
-// die();
+
+// Author @Muriasetya.R
