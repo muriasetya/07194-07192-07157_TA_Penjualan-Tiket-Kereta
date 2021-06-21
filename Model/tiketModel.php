@@ -22,6 +22,24 @@ class tiketModel
         extract($data);
       	require_once("View/tiket/index.php");
     }
+
+    public function InsertData(){
+        require_once("View/tiket/Insertdata.php");
+    }
+
+    public function EditData(){
+        $data = $this->get();
+        extract($data);
+        require_once("View/tiket/EditData.php");
+    }
+
+    public function FormEditData(){
+        require_once("View/tiket/FormEditData.php");
+    }
+
+    public function DataCostumer(){
+        require_once("VIew/tiket/DataCostumer.php");
+    }
 }
 
 // Author @Muriasetya.R

@@ -16,18 +16,14 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="form-inline">
-            <a class=" btn btn-primary " href="index.php?page=login&aksi=View">kembali</a>
-            <a class=" btn btn-primary " href="index.php?page=transaksi&aksi=View">masuk ke transaksi</a>
-            <a class=" btn btn-primary " href="index.php?page=tiket&aksi=InsertData">Input Data</a>
-            <a class=" btn btn-success " href="index.php?page=tiket&aksi=DataCostumer">Check Out</a>
+            <a class=" btn btn-primary " href="index.php?page=tiket&aksi=View">Kembali</a>
         </div>
-        
     </nav>
     <center>
         <div class="container">
             <div class="card mt-5">
                 <div class=" card-header">
-                    <h2>Data Pembelian</h2>
+                    <h2>Data Tiket</h2>
                 </div>
                 <div class="card-body">
 
@@ -52,7 +48,8 @@
                                 <th><?=$row['kelas'] ?></th>
                                 <th><?=$row['harga'] ?></th>
                                 <th>
-                                    <a href="#=<?=$row['No'] ?>" class="btn btn-outline-success">Pilih</a>
+                                    <a class=" btn btn-warning " href="index.php?page=tiket&aksi=FormEditData">Edit Data</a>
+                                    <a class=" btn btn-danger " href="#">Hapus Data</a>
                                 </th>
                             </tr>
                         <?php $no++;

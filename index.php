@@ -36,8 +36,17 @@ if (isset($_GET['page']) && isset($_GET['aksi'])){
 		if ($aksi == 'View'){
 			$tiket->index();
 		}
-		else if ($aksi == 'Tiket') {
-            $login->Tiket();
+		else if ($aksi == 'InsertData') {
+            $tiket->InsertData();
+		}
+		else if ($aksi == 'EditData') {
+            $tiket->EditData();
+		}
+		else if ($aksi == 'FormEditData') {
+            $tiket->FormEditData();
+		}
+		else if ($aksi == 'DataCostumer') {
+            $tiket->DataCostumer();
 		}
 		else{
 			echo "Invalid Argument";

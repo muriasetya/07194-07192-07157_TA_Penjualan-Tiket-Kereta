@@ -11,7 +11,9 @@
 </head>
 
 <body>
-<a class=" btn btn-primary " href="index.php?page=tiket&aksi=View">kembali</a>
+        <div class="form-inline">
+            <a class=" btn btn-primary " href="index.php?page=tiket&aksi=View">Kembali</a>
+        </div>
     <center>
         <div class="container">
             <div class="card mt-5">
@@ -28,6 +30,7 @@
                                 <td>Tanggal Transaksi</td>
                                 <td>Jumlah Satuan</td>
                                 <td>Total Transaksi</td>
+                                <th>pilihan</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -40,6 +43,9 @@
                                 <td><?=$row['tanggalTransaksi'] ?></td>
                                 <td><?=$row['jumlahSatuan'] ?></td>
                                 <td><?=$row['total'] ?></td>
+                                <th>
+                                    <a href="#=<?=$row['No'] ?>" class="btn btn-success">Cetak Tiket</a>
+                                </th>
                             </tr>
                             <?php $no++;
                             endforeach;?>
