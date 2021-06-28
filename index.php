@@ -39,6 +39,24 @@ if (isset($_GET['page']) && isset($_GET['aksi'])){
 		else if ($aksi == 'InsertData') {
             $tiket->InsertData();
 		}
+		else if ($aksi == 'StoreDataKereta') {
+            $tiket->StoreDataKereta();
+		}
+		else if ($aksi == 'InsertDataKelas') {
+            $tiket->InsertDataKelas();
+		}
+		else if ($aksi == 'StoreDataKelasKereta') {
+            $tiket->StoreDataKelasKereta();
+		}
+		else if ($aksi == 'delete') {
+            $tiket->delete();
+		}
+		else if ($aksi == 'InsertHarga') {
+            $tiket->InsertHarga();
+		}
+		else if ($aksi == 'InsertJamKeberangkatan') {
+            $tiket->InsertJamKeberangkatan();
+		}
 		else if ($aksi == 'EditData') {
             $tiket->EditData();
 		}

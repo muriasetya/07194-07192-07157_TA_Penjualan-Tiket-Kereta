@@ -49,7 +49,7 @@
                                 <th><?=$row['harga'] ?></th>
                                 <th>
                                     <a class=" btn btn-warning " href="index.php?page=tiket&aksi=FormEditData">Edit Data</a>
-                                    <a class=" btn btn-danger " href="#">Hapus Data</a>
+                                    <a href="index.php?page=tiket&aksi=delete&No=<?= $row['No'] ?>" class=" btn btn-danger ">Hapus Data</a>
                                 </th>
                             </tr>
                         <?php $no++;

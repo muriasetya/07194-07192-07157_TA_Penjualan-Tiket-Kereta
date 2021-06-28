@@ -24,7 +24,61 @@ class tiketModel
     }
 
     public function InsertData(){
-        require_once("View/tiket/Insertdata.php");
+        require_once("View/tiket/InsertData.php");
+    }
+
+    public function storeDataKereta(){
+        $nama_kereta = $_POST['nama_kereta'];
+        if ($this->prosesStoreDataKereta($nama_kereta)){
+            header("location: index.php?page=tiket&aksi=InsertData&pesan=Berhasil Menambahkan Data Kereta");
+        }else{
+            header("location: index.php?page=tiket&aksi=InsertData&pesan=Gagal Menambahkan Data Kereta");
+        }
+    }
+
+    public function prosesStoreDataKereta($nama_kereta){
+        $sql = "INSERT INTO jenis(nama_kereta) VALUES ('$nama_kereta')";
+        return koneksi()->query($sql);
+    }
+
+    public function storeDataKelasKereta(){
+        $kelas = $_POST['kelas'];
+        if ($this->prosesStoreDataKelasKereta($kelas)){
+            header("location: index.php?page=tiket&aksi=InsertDataKelas&pesan=Berhasil Menambahkan Data Kereta");
+        }else{
+            header("location: index.php?page=tiket&aksi=InsertDataKelas&pesan=Gagal Menambahkan Data Kereta");
+        }
+    }
+
+    public function prosesStoreDataKelasKereta($kelas){
+        $sql = "INSERT INTO kategori(kelas) VALUES ('$kelas')";
+        return koneksi()->query($sql);
+    }
+
+    public function delete(){
+        $No = $_GET['No'];
+        if ($this->prosesDelete($No)){
+            header("location: index.php?page=tiket&aksi=View&pesan=Berhasil Delete Data");
+        }else{
+            header("location: index.php?page=tiket&aksi=EditData&pesan=Gagal Delete Data");
+        }
+    }
+
+    public function prosesDelete($no_tiket){
+        $sql = "DELETE FROM tiket WHERE No = $no";
+        return koneksi()->query($sql);
+    }
+
+    public function InsertDataKelas(){
+        require_once("View/tiket/InsertDataKelas.php");
+    }
+
+    public function InsertHarga(){
+        require_once("View/tiket/InsertHarga.php");
+    }
+
+    public function InsertJamKeberangkatan(){
+        require_once("View/tiket/InsertJamKeberangkatan.php");
     }
 
     public function EditData(){
