@@ -2,11 +2,12 @@
 class tiketModel
 {	
 	public function get(){
-        $sql = "SELECT tiket.no_tiket AS No, tiket.jam_keberangkatan AS jadwal, jenis.nama_kereta AS kereta, kategori.kelas AS kelas, 
-		transaksi.harga AS harga FROM tiket 
-		JOIN jenis ON jenis.id_kereta  = tiket.id_kereta
-		JOIN kategori ON kategori.id_kelas = tiket.id_kelas
-		JOIN transaksi ON transaksi.kode_transaksi = tiket.kode_transaksi" ;
+        $sql = "SELECT tiket.no_tiket AS No, jenis.id_kereta AS id_kereta, kategori.id_kelas AS id_kelas, 
+        keberangkatan.id_keberangkatan AS id_keberangkatan, tiket.jam_keberangkatan AS jadwal, jenis.nama_kereta AS kereta, kategori.kelas AS kelas, 
+        tiket.harga AS harga, keberangkatan.tujuan AS tujuan FROM tiket 
+        JOIN jenis ON jenis.id_kereta  = tiket.id_kereta
+        JOIN kategori ON kategori.id_kelas = tiket.id_kelas
+        JOIN keberangkatan ON keberangkatan.id_keberangkatan = tiket.id_keberangkatan" ;
 
         $query = koneksi()->query($sql);
         $hasil = [];
@@ -24,40 +25,80 @@ class tiketModel
     }
 
     public function InsertData(){
+        $data = $this->getKategori();
+        $data2 = $this->getTujuan();
+        $data3 = $this->getNamaKereta();
+        extract($data);
+        extract($data2);
+        extract($data3);
         require_once("View/tiket/InsertData.php");
+    }
+
+    public function getKategori(){
+        $sql = "SELECT * FROM kategori";
+        $query = koneksi()->query($sql);
+        $hasil = [];
+        while ($data = $query->fetch_assoc()){
+            $hasil[] = $data;
+        }
+        return $hasil;
+    }
+
+    public function getTujuan(){
+        $sql = "SELECT * FROM keberangkatan";
+        $query = koneksi()->query($sql);
+        $hasil = [];
+        while ($data = $query->fetch_assoc()){
+            $hasil[] = $data;
+        }
+        return $hasil;
+    }
+
+    public function getNamaKereta(){
+        $sql = "SELECT * FROM jenis";
+        $query = koneksi()->query($sql);
+        $hasil = [];
+        while ($data = $query->fetch_assoc()){
+            $hasil[] = $data;
+        }
+        return $hasil;
     }
 
     public function storeDataKereta(){
         $nama_kereta = $_POST['nama_kereta'];
-        if ($this->prosesStoreDataKereta($nama_kereta)){
+        $kelas = $_POST['kelas'];
+        $harga = $_POST['harga'];
+        $jam_keberangkatan = $_POST['jam_keberangkatan'];
+        $tujuan = $_POST['tujuan'];
+        if ($this->prosesStoreDataKereta($nama_kereta,$kelas,$harga,$jam_keberangkatan,$tujuan)){
             header("location: index.php?page=tiket&aksi=InsertData&pesan=Berhasil Menambahkan Data Kereta");
         }else{
             header("location: index.php?page=tiket&aksi=InsertData&pesan=Gagal Menambahkan Data Kereta");
         }
     }
 
-    public function prosesStoreDataKereta($nama_kereta){
-        $sql = "INSERT INTO jenis(nama_kereta) VALUES ('$nama_kereta')";
+    public function prosesStoreDataKereta($nama_kereta,$kelas,$harga,$jam_keberangkatan,$tujuan){
+        $sql = "INSERT INTO tiket(id_kereta,id_kelas,harga,jam_keberangkatan,id_keberangkatan) VALUES ($nama_kereta,$kelas,$harga,'$jam_keberangkatan',$tujuan)";
         return koneksi()->query($sql);
     }
 
-    public function storeDataKelasKereta(){
-        $kelas = $_POST['kelas'];
-        if ($this->prosesStoreDataKelasKereta($kelas)){
-            header("location: index.php?page=tiket&aksi=InsertDataKelas&pesan=Berhasil Menambahkan Data Kereta");
-        }else{
-            header("location: index.php?page=tiket&aksi=InsertDataKelas&pesan=Gagal Menambahkan Data Kereta");
-        }
-    }
+    // public function storeDataKelasKereta(){
+    //     $kelas = $_POST['kelas'];
+    //     if ($this->prosesStoreDataKelasKereta($kelas)){
+    //         header("location: index.php?page=tiket&aksi=InsertDataKelas&pesan=Berhasil Menambahkan Data Kereta");
+    //     }else{
+    //         header("location: index.php?page=tiket&aksi=InsertDataKelas&pesan=Gagal Menambahkan Data Kereta");
+    //     }
+    // }
 
-    public function prosesStoreDataKelasKereta($kelas){
-        $sql = "INSERT INTO kategori(kelas) VALUES ('$kelas')";
-        return koneksi()->query($sql);
-    }
+    // public function prosesStoreDataKelasKereta($kelas){
+    //     $sql = "INSERT INTO kategori(kelas) VALUES ('$kelas')";
+    //     return koneksi()->query($sql);
+    // }
 
     public function delete(){
-        $No = $_GET['No'];
-        if ($this->prosesDelete($No)){
+        $no_tiket = $_GET['No'];
+        if ($this->prosesDelete($no_tiket)){
             header("location: index.php?page=tiket&aksi=View&pesan=Berhasil Delete Data");
         }else{
             header("location: index.php?page=tiket&aksi=EditData&pesan=Gagal Delete Data");
@@ -65,7 +106,7 @@ class tiketModel
     }
 
     public function prosesDelete($no_tiket){
-        $sql = "DELETE FROM tiket WHERE No = $no";
+        $sql = "DELETE FROM tiket WHERE no_tiket = $no_tiket";
         return koneksi()->query($sql);
     }
 
@@ -87,9 +128,142 @@ class tiketModel
         require_once("View/tiket/EditData.php");
     }
 
+     public function getKeberangkatan(){
+        $sql = "SELECT * FROM keberangkatan";
+
+        $query = koneksi()->query($sql);
+        $hasil = [];
+        while ($data = $query->fetch_assoc()) {
+            $hasil[] = $data;
+        }
+        return $hasil;
+    }
+
+
+    public function getKereta(){
+        $sql = "SELECT * FROM jenis";
+
+        $query = koneksi()->query($sql);
+        $hasil = [];
+        while ($data = $query->fetch_assoc()) {
+            $hasil[] = $data;
+        }
+        return $hasil;
+    }
+
+
+    public function getTransaksi(){
+        $sql = "SELECT * FROM transaksi";
+
+        $query = koneksi()->query($sql);
+        $hasil = [];
+        while ($data = $query->fetch_assoc()) {
+            $hasil[] = $data;
+        }
+        return $hasil;
+    }
+
+    public function getKelas(){
+        $sql = "SELECT * FROM kategori";
+
+        $query = koneksi()->query($sql);
+        $hasil = [];
+        while ($data = $query->fetch_assoc()) {
+            $hasil[] = $data;
+        }
+        return $hasil;
+    }
+
+
     public function FormEditData(){
+        $No = $_GET['No'];
+        $data = $this->getById($No);
+        $keberangkatan = $this->getKeberangkatan();
+        $kereta = $this->getKereta();
+        
+        
+        // var_export($kereta);
+        //  die();
+         
+        $transaksi = $this->getTransaksi();
+        $kelas = $this->getKelas();
+        extract($keberangkatan);
+        // extract($kereta); // here
+        extract($transaksi);
+        extract($kelas); // here
+        extract($kereta);
+        // var_export($kereta);
+        // var_export($data);
+        // die();
+        // extract($data);
         require_once("View/tiket/FormEditData.php");
     }
+
+    public function prosesUpdate($no_tiket, $jam_keberangkatan, $nama_kereta, $kelas, $harga)
+    {
+        $sql = "UPDATE tiket set id_keberangkatan =  $jam_keberangkatan, id_kereta = $nama_kereta, id_kelas = $kelas, kode_transaksi = $harga where no_tiket = $no_tiket";
+        $query = koneksi()->query($sql);
+        return $query;
+    }
+
+    // public function updateJamKeberangkatan($jam_keberangkatan, $no_tiket)
+    // {
+    //     $sql = "UPDATE tiket SET jam_keberangkatan = '$jam_keberangkatan' where no_tiket = $no_tiket ";
+
+    //     $query = koneksi()->query($sql);
+    //     return $query;
+    // }
+
+    // public function updateNamaKereta($nama_kereta, $id_kereta)
+    // {
+    //     $sql = "UPDATE jenis set nama_kereta = '$nama_kereta' where id_kereta = $id_kereta ";
+
+    //     $query = koneksi()->query($sql);
+    //     return $query;
+    // }
+
+    // public function updateKelas($kelas, $id_kelas)
+    // {
+    //     $sql = "UPDATE kategori set kelas = '$kelas' where id_kelas = $id_kelas";
+
+    //     $query = koneksi()->query($sql);
+    //     return $query;
+    // }
+
+    public function updateHarga($harga, $no_niket)
+    {
+        $sql = "UPDATE transaksi set harga = '$harga' where no_tiket = $no_tiket";
+
+        $query = koneksi()->query($sql);
+        return $query;
+    }
+
+    public function update()
+      {
+          $no_tiket = $_POST['no_tiket'];
+          $jam_keberangkatan = $_POST['jam_keberangkatan'];
+          $nama_kereta = $_POST['nama_kereta'];
+          $kelas = $_POST['kelas'];
+          $harga = $_POST['harga'];
+
+          if ($this->prosesUpdate($no_tiket, $jam_keberangkatan, $nama_kereta, $kelas, $harga)) {
+              header("location: index.php?page=tiket&aksi=EditData&pesan=Berhasil Ubah Data");
+          } else {
+              header("location: index.php?page=tiket&aksi=EditData&pesan=Gagal Ubah Data&coba=$harga");
+          }
+      }
+
+      public function getById($No)
+        {
+            $sql = "SELECT tiket.no_tiket AS No, jenis.id_kereta AS id_kereta, kategori.id_kelas AS id_kelas, 
+            keberangkatan.id_keberangkatan AS id_keberangkatan, tiket.jam_keberangkatan AS jadwal, jenis.nama_kereta AS kereta, kategori.kelas AS kelas, 
+            tiket.harga AS harga, keberangkatan.tujuan AS tujuan FROM tiket 
+            JOIN jenis ON jenis.id_kereta  = tiket.id_kereta
+            JOIN kategori ON kategori.id_kelas = tiket.id_kelas
+            JOIN keberangkatan ON keberangkatan.id_keberangkatan = tiket.id_keberangkatan where tiket.no_tiket = $No";
+            $query = koneksi()->query($sql);
+            return $query->fetch_assoc();
+        }
 
     public function DataCostumer(){
         require_once("VIew/tiket/DataCostumer.php");

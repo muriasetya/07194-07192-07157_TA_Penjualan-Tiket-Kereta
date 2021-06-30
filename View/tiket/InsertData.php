@@ -30,7 +30,41 @@
                 <form action="index.php?page=tiket&aksi=StoreDataKereta" method="POST">
                     <div class="form-group">
                         <label>Nama Kereta : </label>
-                        <input type="text" class="form-control" name="nama_kereta">
+                        <select name="nama_kereta" class="form-control" readonly>
+                                    <?php foreach ($data3 as $row) : ?>
+                                        
+                                            <option value="<?= $row['id_kereta'] ?>"><?= $row['nama_kereta']; ?></option>
+                                        
+                                        <?php endforeach; ?>
+                                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Kelas : </label>
+                        <select name="kelas" class="form-control" readonly>
+                                    <?php foreach ($data as $row) : ?>
+                                        
+                                            <option value="<?= $row['id_kelas'] ?>"><?= $row['kelas']; ?></option>
+                                        
+                                        <?php endforeach; ?>
+                                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Tujuan : </label>
+                        <select name="tujuan" class="form-control" readonly>
+                                    <?php foreach ($data2 as $row) : ?>
+                                        
+                                            <option value="<?= $row['id_keberangkatan'] ?>"><?= $row['tujuan']; ?></option>
+                                        
+                                        <?php endforeach; ?>
+                                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Harga : </label>
+                        <input type="text" class="form-control" name="harga">
+                    </div>
+                    <div class="form-group">
+                        <label>Jam Keberangkatan : </label>
+                        <input type="text" class="form-control" name="jam_keberangkatan">
                     </div>
                     <button type="submit" class="btn btn-success btn-lg ">Submit</button> 
                     <a href="index.php?page=tiket&aksi=InsertDataKelas" class="btn btn-info btn-lg ">Next</a>

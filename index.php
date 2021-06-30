@@ -66,6 +66,9 @@ if (isset($_GET['page']) && isset($_GET['aksi'])){
 		else if ($aksi == 'DataCostumer') {
             $tiket->DataCostumer();
 		}
+		else if ($aksi == 'update') {
+            $tiket->update();
+		}
 		else{
 			echo "Invalid Argument";
 		}

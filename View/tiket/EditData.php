@@ -31,6 +31,7 @@
                         <thead>
                             <tr>
                                 <th>No</th>
+                                <th>Tujuan</th>
                                 <th>Jadwal</th>
                                 <th>Nama Kereta</th>
                                 <th>Kelas</th>
@@ -43,12 +44,13 @@
                         foreach ($data as $row) : ?>
                             <tr>
                                 <th><?=$row['No'] ?></th>
+                                <th><?=$row['tujuan'] ?></th>
                                 <th><?=$row['jadwal'] ?></th>
                                 <th><?=$row['kereta'] ?></th>
                                 <th><?=$row['kelas'] ?></th>
                                 <th><?=$row['harga'] ?></th>
                                 <th>
-                                    <a class=" btn btn-warning " href="index.php?page=tiket&aksi=FormEditData">Edit Data</a>
+                                    <a class=" btn btn-warning " href="index.php?page=tiket&aksi=FormEditData&No=<?= $row['No'] ?>">Edit Data</a>
                                     <a href="index.php?page=tiket&aksi=delete&No=<?= $row['No'] ?>" class=" btn btn-danger ">Hapus Data</a>
                                 </th>
                             </tr>

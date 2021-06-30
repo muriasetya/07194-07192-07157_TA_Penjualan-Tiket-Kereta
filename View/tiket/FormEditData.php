@@ -26,24 +26,60 @@
             <div class="card-header">
                 <h2>Update Data Tiket</h2>
             </div>
-            <div class="card-body">
-                <form action="index.php?page=auth&aksi=storePraktikan" method="POST">
+             <div class="card-body">
+                <form action="index.php?page=tiket&aksi=update" method="POST">
+                <input type="hidden" class="form-control" name="no_tiket" value="<?= $data['No']?>" required>
                     <div class="form-group">
-                        <label>Jam keberangkatan : </label>
-                        <input type="text" class="form-control" name="nama">
+                        <label>Jam Keberangkatan : </label>
+                        <input type="text" class="form-control" name="jam_keberangkatan" value="<?= $data['jadwal']?>" required>
+                        </div>
+                    <div class="form-group">
+                    <label for="">Tujuan : </label>
+                                <select name="tujuan" class="form-control" readonly>
+                                    <?php foreach ($keberangkatan as $row) : ?>
+                                        <?php if ($data['id_keberangkatan'] == $row['id_keberangkatan']) :  ?>
+                                            <option selected value="<?= $row['id_keberangkatan'] ?>"><?= $row['tujuan']; ?></option>
+                                        <?php else : ?>
+                                            <option value="<?= $row['id_keberangkatan'] ?>"><?= $row['tujuan']; ?></option>
+                                        <?php endif ?>
+                                        <?php endforeach; ?>
+                                        </select>
                     </div>
                     <div class="form-group">
-                        <label>Nama Kereta : </label>
-                        <input type="text" class="form-control" name="npm">
+                    <label for="">Nama Kereta : </label>
+                                <select name="kereta" class="form-control" readonly>
+                                    <?php foreach ($kereta as $row) : ?>
+                                        <?php if ($data['id_kereta'] == $row['id_kereta']) :  ?>
+                                            <option selected value="<?= $row['id_kereta'] ?>"><?php echo $row['nama_kereta']; ?></option>
+                                        <?php else : ?>
+                                            <option value="<?= $row['id_kereta'] ?>"><?= $row['nama_kereta']; ?></option>
+                                        <?php endif ?>
+                                        <?php endforeach; ?>
+                                        </select>
                     </div>
                     <div class="form-group">
-                        <label>Kelas : </label>
-                        <input type="password" class="form-control" name="password">
+                    <label for="">Kelas : </label>
+                                <select name="kelas" class="form-control" readonly>
+                                    <?php foreach ($kelas as $row) : ?>
+                                        <?php if ($data['id_kelas'] == $row['id_kelas']) :  ?>
+                                            <option selected value="<?= $row['id_kelas'] ?>"><?= $row['kelas']; ?></option>
+                                        <?php else : ?>
+                                            <option value="<?= $row['id_kelas'] ?>"><?= $row['kelas']; ?></option>
+                                        <?php endif ?>
+                                        <?php endforeach; ?>
+                                        </select>
                     </div>
                     <div class="form-group">
-                        <label>Harga : </label>
-                        <input type="text" class="form-control" name="no_hp">
-                    </div>
+                    <label for="">Harga : </label>
+                                <select name="harga" class="form-control" readonly>
+                                    <?php foreach ($harga as $row) : ?>
+                                        <?php if ($data['kode_transaksi'] == $row['kode_transaksi']) :  ?>
+                                            <option selected value="<?= $row['kode_transaksi'] ?>"><?= $row['harga']; ?></option>
+                                        <?php else : ?>
+                                            <option value="<?= $row['kode_transaksi'] ?>"><?= $row['harga']; ?></option>
+                                        <?php endif ?>
+                                        <?php endforeach; ?>
+                                        </select>
                     <button type="submit" class="btn btn-success btn-lg btn-block">Input</button>
                 </form>
             </div>
