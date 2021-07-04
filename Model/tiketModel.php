@@ -286,4 +286,3 @@ class tiketModel
         }
 }
 
-// Author @Muriasetya.R
