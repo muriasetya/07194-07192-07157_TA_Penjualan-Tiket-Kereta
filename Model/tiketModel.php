@@ -203,6 +203,7 @@ class tiketModel
     }
 
 
+<<<<<<< HEAD
     // public function FormEditData(){
     //     $No = $_GET['No'];
     //     $data = $this->getById($No);
@@ -239,6 +240,76 @@ class tiketModel
     //           header("location: index.php?page=tiket&aksi=EditData&pesan=Gagal Ubah Data");
     //       }
     //   }
+=======
+    public function FormEditData(){
+        $No = $_GET['No'];
+        $data = $this->getById($No);
+        $keberangkatan = $this->getKeberangkatan();
+        $kereta = $this->getKereta();
+        $tiket = $this->getTiket();
+        $kelas = $this->getKelas();
+        extract($keberangkatan);
+        extract($tiket);
+        extract($kelas); // here
+        extract($kereta);
+        extract($data);
+        require_once("View/tiket/FormEditData.php");
+    }
+
+    public function prosesUpdate($no_tiket, $jam_keberangkatan, $nama_kereta, $kelas, $harga)
+    {
+        $sql = "UPDATE tiket set id_keberangkatan =  $jam_keberangkatan, id_kereta = $nama_kereta, id_kelas = $kelas, no_tiket = $harga where no_tiket = $no_tiket";
+        $query = koneksi()->query($sql);
+        return $query;
+    }
+
+    // public function updateJamKeberangkatan($jam_keberangkatan, $no_tiket)
+    // {
+    //     $sql = "UPDATE tiket SET jam_keberangkatan = '$jam_keberangkatan' where no_tiket = $no_tiket ";
+
+    //     $query = koneksi()->query($sql);
+    //     return $query;
+    // }
+
+    // public function updateNamaKereta($nama_kereta, $id_kereta)
+    // {
+    //     $sql = "UPDATE jenis set nama_kereta = '$nama_kereta' where id_kereta = $id_kereta ";
+
+    //     $query = koneksi()->query($sql);
+    //     return $query;
+    // }
+
+    // public function updateKelas($kelas, $id_kelas)
+    // {
+    //     $sql = "UPDATE kategori set kelas = '$kelas' where id_kelas = $id_kelas";
+
+    //     $query = koneksi()->query($sql);
+    //     return $query;
+    // }
+
+    // public function updateHarga($harga, $no_niket)
+    // {
+    //     $sql = "UPDATE tiket set harga = '$harga' where no_tiket = $no_tiket";
+
+    //     $query = koneksi()->query($sql);
+    //     return $query;
+    // }
+
+    public function update()
+      {
+          $no_tiket = $_POST['no_tiket'];
+          $jam_keberangkatan = $_POST['jam_keberangkatan'];
+          $nama_kereta = $_POST['nama_kereta'];
+          $kelas = $_POST['kelas'];
+          $harga = $_POST['harga'];
+
+          if ($this->prosesUpdate($no_tiket, $jam_keberangkatan, $nama_kereta, $kelas, $harga)) {
+              header("location: index.php?page=tiket&aksi=EditData&pesan=Berhasil Ubah Data");
+          } else {
+              header("location: index.php?page=tiket&aksi=EditData&pesan=Gagal Ubah Data");
+          }
+      }
+>>>>>>> 6860eaddff6e1ee2bde80dfc6ef758442d334358
 
       public function getById($No)
         {
@@ -252,10 +323,17 @@ class tiketModel
             return $query->fetch_assoc();
         }
 
+<<<<<<< HEAD
     // public function DataCostumer(){
     //     $no_tiket = $_GET['No'];
     //     require_once("VIew/tiket/DataCostumer.php");
     // }
+=======
+    public function DataCostumer(){
+        $no_tiket = $_GET['No'];
+        require_once("VIew/tiket/DataCostumer.php");
+    }
+>>>>>>> 6860eaddff6e1ee2bde80dfc6ef758442d334358
 
     public function prosesCostumer($nama, $no_telp, $gambar)
         {
@@ -264,6 +342,7 @@ class tiketModel
                 return $query;
         }
     
+<<<<<<< HEAD
         // public function Costumer(){
         //     $no_tiket = $_GET['No'];
         //     $nama = $_POST['nama'];
@@ -280,6 +359,23 @@ class tiketModel
         //         }
         //     }
         // }
+=======
+        public function Costumer(){
+            $no_tiket = $_GET['No'];
+            $nama = $_POST['nama'];
+            $no_telp = $_POST['no_telp'];
+            $gambar_sementara=$_FILES['foto_ktp']['tmp_name'];
+            $lokasi =__DIR__ . '/../img/';
+            $gambar=$_FILES['foto_ktp']['name'];
+            $gambar=$gambar.".jpg";
+            if(move_uploaded_file($gambar_sementara, $lokasi . $gambar)){
+                if ($this->prosesCostumer($nama, $no_telp, $gambar)) {
+                    header("location: index.php?page=tiket&aksi=DataCostumer&No=".$no_tiket."&pesan=Berhasil Daftar");
+                } else {
+                    header("location: index.php?page=tiket&aksi=DataCostumer&No=".$no_tiket."&pesan=Gagal Daftar");
+                }
+            }
+        }
+>>>>>>> 6860eaddff6e1ee2bde80dfc6ef758442d334358
 }
 
-// Author @Muriasetya.R

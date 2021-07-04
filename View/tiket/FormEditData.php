@@ -38,6 +38,7 @@
                     <input type="text" class="form-control" name="tujuan" disabled value="<?= $data['tujuan']?>" />
                     </div>
                     <div class="form-group">
+<<<<<<< HEAD
                     <label>Nama Kereta </label>
                     <input type="text" class="form-control" name="nama_kereta" disabled value="<?= $data['kereta']?>" />
                     </div>
@@ -48,6 +49,18 @@
                     <div class="form-group">
                     <label>Jam Keberangkatan : </label>
                     <input type="text" class="form-control" name="jam_keberangkatan" value="<?= $data['jadwal']?>" required>
+=======
+                    <label for="">Tujuan : </label>
+                    <input type="text" class="form-control" name="tujuan" value="<?= $data['tujuan']?>" required>
+                    </div>
+                    <div class="form-group">
+                    <label for="">Nama Kereta : </label>
+                    <input type="text" class="form-control" name="nama_kereta" value="<?= $data['kereta']?>" required>
+                    </div>
+                    <div class="form-group">
+                    <label for="">Kelas : </label>
+                    <input type="text" class="form-control" name="kelas" value="<?= $data['kelas']?>" required>
+>>>>>>> 6860eaddff6e1ee2bde80dfc6ef758442d334358
                     </div>
                     <div class="form-group">
                     <label for="">Harga : </label>
