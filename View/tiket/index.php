@@ -52,7 +52,7 @@
                                 <th><?=$row['kelas'] ?></th>
                                 <th><?=$row['harga'] ?></th>
                                 <th>
-                                    <a href="#=<?=$row['No'] ?>" class="btn btn-outline-success">Pilih</a>
+                                    <a href="index.php?page=transaksi&aksi=storetiket&No=<?=$row['No'] ?>" class="btn btn-outline-success">Pilih</a>
                                 </th>
                             </tr>
                         <?php $no++;

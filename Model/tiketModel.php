@@ -152,8 +152,8 @@ class tiketModel
     }
 
 
-    public function getTransaksi(){
-        $sql = "SELECT * FROM transaksi";
+    public function getTiket(){
+        $sql = "SELECT * FROM tiket";
 
         $query = koneksi()->query($sql);
         $hasil = [];
@@ -180,28 +180,19 @@ class tiketModel
         $data = $this->getById($No);
         $keberangkatan = $this->getKeberangkatan();
         $kereta = $this->getKereta();
-        
-        
-        // var_export($kereta);
-        //  die();
-         
-        $transaksi = $this->getTransaksi();
+        $tiket = $this->getTiket();
         $kelas = $this->getKelas();
         extract($keberangkatan);
-        // extract($kereta); // here
-        extract($transaksi);
+        extract($tiket);
         extract($kelas); // here
         extract($kereta);
-        // var_export($kereta);
-        // var_export($data);
-        // die();
-        // extract($data);
+        extract($data);
         require_once("View/tiket/FormEditData.php");
     }
 
     public function prosesUpdate($no_tiket, $jam_keberangkatan, $nama_kereta, $kelas, $harga)
     {
-        $sql = "UPDATE tiket set id_keberangkatan =  $jam_keberangkatan, id_kereta = $nama_kereta, id_kelas = $kelas, kode_transaksi = $harga where no_tiket = $no_tiket";
+        $sql = "UPDATE tiket set id_keberangkatan =  $jam_keberangkatan, id_kereta = $nama_kereta, id_kelas = $kelas, no_tiket = $harga where no_tiket = $no_tiket";
         $query = koneksi()->query($sql);
         return $query;
     }
@@ -230,13 +221,13 @@ class tiketModel
     //     return $query;
     // }
 
-    public function updateHarga($harga, $no_niket)
-    {
-        $sql = "UPDATE transaksi set harga = '$harga' where no_tiket = $no_tiket";
+    // public function updateHarga($harga, $no_niket)
+    // {
+    //     $sql = "UPDATE tiket set harga = '$harga' where no_tiket = $no_tiket";
 
-        $query = koneksi()->query($sql);
-        return $query;
-    }
+    //     $query = koneksi()->query($sql);
+    //     return $query;
+    // }
 
     public function update()
       {
@@ -249,7 +240,7 @@ class tiketModel
           if ($this->prosesUpdate($no_tiket, $jam_keberangkatan, $nama_kereta, $kelas, $harga)) {
               header("location: index.php?page=tiket&aksi=EditData&pesan=Berhasil Ubah Data");
           } else {
-              header("location: index.php?page=tiket&aksi=EditData&pesan=Gagal Ubah Data&coba=$harga");
+              header("location: index.php?page=tiket&aksi=EditData&pesan=Gagal Ubah Data");
           }
       }
 
@@ -266,8 +257,33 @@ class tiketModel
         }
 
     public function DataCostumer(){
+        $no_tiket = $_GET['No'];
         require_once("VIew/tiket/DataCostumer.php");
     }
+
+    public function prosesCostumer($nama, $no_telp, $gambar)
+        {
+               $sql = "INSERT INTO costumer(nama, no_telp, foto_ktp) VALUES ('$nama', '$no_telp', '$gambar')";
+               $query = koneksi()->query($sql);
+                return $query;
+        }
+    
+        public function Costumer(){
+            $no_tiket = $_GET['No'];
+            $nama = $_POST['nama'];
+            $no_telp = $_POST['no_telp'];
+            $gambar_sementara=$_FILES['foto_ktp']['tmp_name'];
+            $lokasi =__DIR__ . '/../img/';
+            $gambar=$_FILES['foto_ktp']['name'];
+            $gambar=$gambar.".jpg";
+            if(move_uploaded_file($gambar_sementara, $lokasi . $gambar)){
+                if ($this->prosesCostumer($nama, $no_telp, $gambar)) {
+                    header("location: index.php?page=tiket&aksi=DataCostumer&No=".$no_tiket."&pesan=Berhasil Daftar");
+                } else {
+                    header("location: index.php?page=tiket&aksi=DataCostumer&No=".$no_tiket."&pesan=Gagal Daftar");
+                }
+            }
+        }
 }
 
 // Author @Muriasetya.R

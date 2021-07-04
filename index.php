@@ -69,6 +69,9 @@ if (isset($_GET['page']) && isset($_GET['aksi'])){
 		else if ($aksi == 'update') {
             $tiket->update();
 		}
+		else if ($aksi == 'costumer') {
+            $tiket->Costumer();
+		}
 		else{
 			echo "Invalid Argument";
 		}
@@ -78,9 +81,15 @@ if (isset($_GET['page']) && isset($_GET['aksi'])){
 		if ($aksi == 'View'){
 			$transaksi->index();
 		}
-		// else if ($aksi == 'Tiket') {
-  //           $login->Tiket();
-		// }
+		else if ($aksi == 'struk') {
+            $transaksi->struk();
+		}
+		else if ($aksi == 'storetiket') {
+            $transaksi->storetiket();
+		}
+		else if ($aksi == 'storetransaksi') {
+            $transaksi->storetransaksi();
+		}
 		else{
 			echo "Invalid Argument";
 		}

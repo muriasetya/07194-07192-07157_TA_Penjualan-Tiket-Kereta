@@ -35,51 +35,20 @@
                         </div>
                     <div class="form-group">
                     <label for="">Tujuan : </label>
-                                <select name="tujuan" class="form-control" readonly>
-                                    <?php foreach ($keberangkatan as $row) : ?>
-                                        <?php if ($data['id_keberangkatan'] == $row['id_keberangkatan']) :  ?>
-                                            <option selected value="<?= $row['id_keberangkatan'] ?>"><?= $row['tujuan']; ?></option>
-                                        <?php else : ?>
-                                            <option value="<?= $row['id_keberangkatan'] ?>"><?= $row['tujuan']; ?></option>
-                                        <?php endif ?>
-                                        <?php endforeach; ?>
-                                        </select>
+                    <input type="text" class="form-control" name="tujuan" value="<?= $data['tujuan']?>" required>
                     </div>
                     <div class="form-group">
                     <label for="">Nama Kereta : </label>
-                                <select name="kereta" class="form-control" readonly>
-                                    <?php foreach ($kereta as $row) : ?>
-                                        <?php if ($data['id_kereta'] == $row['id_kereta']) :  ?>
-                                            <option selected value="<?= $row['id_kereta'] ?>"><?php echo $row['nama_kereta']; ?></option>
-                                        <?php else : ?>
-                                            <option value="<?= $row['id_kereta'] ?>"><?= $row['nama_kereta']; ?></option>
-                                        <?php endif ?>
-                                        <?php endforeach; ?>
-                                        </select>
+                    <input type="text" class="form-control" name="nama_kereta" value="<?= $data['kereta']?>" required>
                     </div>
                     <div class="form-group">
                     <label for="">Kelas : </label>
-                                <select name="kelas" class="form-control" readonly>
-                                    <?php foreach ($kelas as $row) : ?>
-                                        <?php if ($data['id_kelas'] == $row['id_kelas']) :  ?>
-                                            <option selected value="<?= $row['id_kelas'] ?>"><?= $row['kelas']; ?></option>
-                                        <?php else : ?>
-                                            <option value="<?= $row['id_kelas'] ?>"><?= $row['kelas']; ?></option>
-                                        <?php endif ?>
-                                        <?php endforeach; ?>
-                                        </select>
+                    <input type="text" class="form-control" name="kelas" value="<?= $data['kelas']?>" required>
                     </div>
                     <div class="form-group">
                     <label for="">Harga : </label>
-                                <select name="harga" class="form-control" readonly>
-                                    <?php foreach ($harga as $row) : ?>
-                                        <?php if ($data['kode_transaksi'] == $row['kode_transaksi']) :  ?>
-                                            <option selected value="<?= $row['kode_transaksi'] ?>"><?= $row['harga']; ?></option>
-                                        <?php else : ?>
-                                            <option value="<?= $row['kode_transaksi'] ?>"><?= $row['harga']; ?></option>
-                                        <?php endif ?>
-                                        <?php endforeach; ?>
-                                        </select>
+                    <input type="text" class="form-control" name="harga" value="<?= $data['harga']?>" required>
+                    </div>
                     <button type="submit" class="btn btn-success btn-lg btn-block">Input</button>
                 </form>
             </div>
