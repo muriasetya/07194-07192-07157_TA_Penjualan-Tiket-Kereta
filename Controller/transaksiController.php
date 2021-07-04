@@ -27,7 +27,6 @@ class transaksiController
 
     public function storetransaksi(){
         $no_tiket = $_GET['No'];
-        // $data = $this->getByTiket($no_tiket);
         $costumer = $this->model->getLastData();
         $tanggal_transaksi = date('Y-m-d');
         $harga = $this->model->getHarga($no_tiket);

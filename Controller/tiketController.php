@@ -44,6 +44,10 @@ class tiketController
         require_once("View/tiket/InsertTujuan.php");
     }
 
+    public function InsertKereta(){
+        require_once("View/tiket/InsertKereta.php");
+    }
+
     public function storeDataKelasKereta(){
         $kelas = $_POST['kelas'];
         if ($this->model->prosesStoreDataKelasKereta($kelas)){

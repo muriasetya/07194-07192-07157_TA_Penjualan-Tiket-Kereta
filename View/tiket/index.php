@@ -17,9 +17,8 @@
         </button>
         <div class="form-inline">
             <a class=" btn btn-danger " href="index.php?page=login&aksi=View">Log Out</a>
-            <a class=" btn btn-primary " href="index.php?page=transaksi&aksi=View">masuk ke transaksi</a>
-            <a class=" btn btn-primary " href="index.php?page=tiket&aksi=InsertData">Input Data</a>
-            <a class=" btn btn-success " href="index.php?page=tiket&aksi=DataCostumer">Check Out</a>
+            <a class=" btn btn-primary " href="index.php?page=transaksi&aksi=View">Masuk Ke Transaksi</a>
+            <a class=" btn btn-primary " href="index.php?page=tiket&aksi=InsertData">Input Data Tiket</a>
         </div>
         
     </nav>

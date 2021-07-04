@@ -21,7 +21,6 @@ class authAdminController
             alert('Username Atau Password Anda Salah');
             window.location='index.php';
             </script>";
-            //header("location: index.php?page=login&aksi=View&pesan=Upaya login digagalkan");
             
         }
     }

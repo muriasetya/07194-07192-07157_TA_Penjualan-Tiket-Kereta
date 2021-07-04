@@ -18,6 +18,9 @@
         </button>
         <div class="form-inline">
             <a class=" btn btn-secondary " href="index.php?page=tiket&aksi=EditData">Edit Data Tiket</a>
+            <a class=" btn btn-primary " href="index.php?page=tiket&aksi=InsertKereta">Tambah Nama Kereta</a>
+            <a class=" btn btn-primary " href="index.php?page=tiket&aksi=InsertDataKelas">Tambah Kelas</a>
+            <a class=" btn btn-primary " href="index.php?page=tiket&aksi=InsertTujuan">Tambah Tujuan</a>
         </div>
         
     </nav>
@@ -67,7 +70,7 @@
                         <input type="text" class="form-control" name="jam_keberangkatan">
                     </div>
                     <button type="submit" class="btn btn-success btn-lg ">Submit</button> 
-                    <a href="index.php?page=tiket&aksi=InsertKereta" class="btn btn-info btn-lg ">Next</a>
+                    <a href="index.php?page=tiket&aksi=index" class="btn btn-info btn-lg ">Next</a>
                 </form>
             </div>
         </div>

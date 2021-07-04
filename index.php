@@ -2,8 +2,6 @@
 
 require_once("koneksi.php");
 
-//require_once("View/login/index.php");
-
 require_once("Model/authAdmin.php");
 require_once("Model/tiketModel.php");
 require_once("Model/transaksiModel.php");
@@ -26,11 +24,7 @@ if (isset($_GET['page']) && isset($_GET['aksi'])){
 		}
 		else if ($aksi == 'tiket') {
             $login->authAdminz();
-		}
-		// else if ($aksi == 'transaksi') {
-		// 	$login->transaksi();
-		// }
-		else{
+		}else{
 			echo "Invalid Argument";
 		}
 
@@ -83,6 +77,9 @@ if (isset($_GET['page']) && isset($_GET['aksi'])){
 		}
 		else if ($aksi == 'costumer') {
             $tiket->Costumer();
+		}
+		else if ($aksi == 'index') {
+            $tiket->index();
 		}
 		else{
 			echo "Invalid Argument";

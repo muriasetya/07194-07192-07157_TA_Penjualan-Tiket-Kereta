@@ -17,7 +17,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="form-inline">
-            <a class=" btn btn-secondary " href="index.php?page=tiket&aksi=EditData">Edit Data Tiket</a>
+            <a class=" btn btn-primary " href="index.php?page=tiket&aksi=InsertData">Kembali</a>
         </div>
         
     </nav>
@@ -33,7 +33,6 @@
                         <input type="text" class="form-control" name="nama_kereta">
                     </div>
                     <button type="submit" class="btn btn-success btn-lg ">Submit</button> 
-                    <a href="index.php?page=tiket&aksi=InsertDataKelas" class="btn btn-info btn-lg ">Next</a>
                 </form>
             </div>
         </div>
