@@ -44,7 +44,7 @@
                                 <td><?=$row['jumlahSatuan'] ?></td>
                                 <td><?=$row['total'] ?></td>
                                 <th>
-                                    <a href="#=<?=$row['No'] ?>" class="btn btn-success">Cetak Tiket</a>
+                                    <a href="index.php?page=transaksi&aksi=struk&kode_transaksi=<?=$row['idTransaksi'] ?>" class="btn btn-success">Cetak Tiket</a>
                                 </th>
                             </tr>
                             <?php $no++;

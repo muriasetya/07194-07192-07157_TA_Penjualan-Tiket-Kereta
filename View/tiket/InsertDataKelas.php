@@ -27,13 +27,13 @@
                 <h2>Insert Data Tiket</h2>
             </div>
             <div class="card-body">
-                <form action="index.php?page=tiket&aksi=StoreDataKelasKereta" method="POST">
+                <form action="index.php?page=tiket&aksi=storeDataKelasKereta" method="POST">
                     <div class="form-group">
                         <label>Kelas : </label>
                         <input type="text" class="form-control" name="kelas">
                     </div>
                     <button type="submit" class="btn btn-success btn-lg ">Submit</button> 
-                    <a href="index.php?page=tiket&aksi=InsertHarga" class="btn btn-info btn-lg ">Next</a>
+                    <a href="index.php?page=tiket&aksi=InsertTujuan" class="btn btn-info btn-lg ">Next</a>
                 </form>
             </div>
         </div>

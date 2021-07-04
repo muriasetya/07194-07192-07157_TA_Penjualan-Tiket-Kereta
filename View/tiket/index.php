@@ -16,7 +16,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="form-inline">
-            <a class=" btn btn-primary " href="index.php?page=login&aksi=View">kembali</a>
+            <a class=" btn btn-danger " href="index.php?page=login&aksi=View">Log Out</a>
             <a class=" btn btn-primary " href="index.php?page=transaksi&aksi=View">masuk ke transaksi</a>
             <a class=" btn btn-primary " href="index.php?page=tiket&aksi=InsertData">Input Data</a>
             <a class=" btn btn-success " href="index.php?page=tiket&aksi=DataCostumer">Check Out</a>
@@ -52,7 +52,7 @@
                                 <th><?=$row['kelas'] ?></th>
                                 <th><?=$row['harga'] ?></th>
                                 <th>
-                                    <a href="#=<?=$row['No'] ?>" class="btn btn-outline-success">Pilih</a>
+                                    <a href="index.php?page=transaksi&aksi=storetiket&No=<?=$row['No'] ?>" class="btn btn-outline-success">Pilih</a>
                                 </th>
                             </tr>
                         <?php $no++;

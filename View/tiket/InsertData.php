@@ -67,7 +67,7 @@
                         <input type="text" class="form-control" name="jam_keberangkatan">
                     </div>
                     <button type="submit" class="btn btn-success btn-lg ">Submit</button> 
-                    <a href="index.php?page=tiket&aksi=InsertDataKelas" class="btn btn-info btn-lg ">Next</a>
+                    <a href="index.php?page=tiket&aksi=InsertKereta" class="btn btn-info btn-lg ">Next</a>
                 </form>
             </div>
         </div>

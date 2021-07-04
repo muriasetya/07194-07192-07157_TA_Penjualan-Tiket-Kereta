@@ -8,6 +8,9 @@ require_once("Model/authAdmin.php");
 require_once("Model/tiketModel.php");
 require_once("Model/transaksiModel.php");
 
+require_once("Controller/AuthAdminController.php");
+require_once("Controller/tiketController.php");
+require_once("Controller/transaksiController.php");
 
 if (isset($_GET['page']) && isset($_GET['aksi'])){
 
@@ -17,7 +20,7 @@ if (isset($_GET['page']) && isset($_GET['aksi'])){
 	$aksi = $_GET['aksi'];
 
 	if ($page == "login"){
-		$login = new authAdmin();
+		$login = new authAdminController();
 		if ($aksi == 'View'){
 			$login->index();
 		}
@@ -32,7 +35,7 @@ if (isset($_GET['page']) && isset($_GET['aksi'])){
 		}
 
 	}else if($page == "tiket"){
-		$tiket = new tiketModel();
+		$tiket = new tiketController();
 		if ($aksi == 'View'){
 			$tiket->index();
 		}
@@ -45,17 +48,26 @@ if (isset($_GET['page']) && isset($_GET['aksi'])){
 		else if ($aksi == 'InsertDataKelas') {
             $tiket->InsertDataKelas();
 		}
-		else if ($aksi == 'StoreDataKelasKereta') {
-            $tiket->StoreDataKelasKereta();
+		else if ($aksi == 'storeDataKelasKereta') {
+            $tiket->storeDataKelasKereta();
 		}
 		else if ($aksi == 'delete') {
             $tiket->delete();
 		}
-		else if ($aksi == 'InsertHarga') {
-            $tiket->InsertHarga();
+		else if ($aksi == 'InsertTujuan') {
+            $tiket->InsertTujuan();
 		}
-		else if ($aksi == 'InsertJamKeberangkatan') {
-            $tiket->InsertJamKeberangkatan();
+		else if ($aksi == 'storeDataTujuan') {
+            $tiket->storeDataTujuan();
+		}
+		else if ($aksi == 'costumer') {
+            $tiket->Costumer();
+		}
+		else if ($aksi == 'InsertKereta') {
+            $tiket->InsertKereta();
+		}
+		else if ($aksi == 'storeDataNamaKereta') {
+            $tiket->storeDataNamaKereta();
 		}
 		else if ($aksi == 'EditData') {
             $tiket->EditData();
@@ -74,13 +86,19 @@ if (isset($_GET['page']) && isset($_GET['aksi'])){
 		}
 
 	}else if ($page == "transaksi"){
-		$transaksi = new transaksiModel();
+		$transaksi = new transaksiController();
 		if ($aksi == 'View'){
 			$transaksi->index();
 		}
-		// else if ($aksi == 'Tiket') {
-  //           $login->Tiket();
-		// }
+		else if ($aksi == 'struk') {
+            $transaksi->struk();
+		}
+		else if ($aksi == 'storetiket') {
+            $transaksi->storetiket();
+		}
+		else if ($aksi == 'storetransaksi') {
+            $transaksi->storetransaksi();
+		}
 		else{
 			echo "Invalid Argument";
 		}
